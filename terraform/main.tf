@@ -1,4 +1,3 @@
-# main.tf
 terraform {
   required_providers {
     aws = {
@@ -7,8 +6,13 @@ terraform {
     }
   }
 
-  # You'll configure this later
-  backend "s3" {}
+  backend "s3" {
+    bucket         = "awsyadav552908"
+    key            = "terraform/terraform.tfstate"
+    region         = "eu-west-1"
+    dynamodb_table = "terraform-state-locks"
+    encrypt        = true
+  }
 }
 
 provider "aws" {
